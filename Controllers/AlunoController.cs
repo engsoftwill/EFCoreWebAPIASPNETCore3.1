@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SmartSchool.WebAPI.Models;
 
@@ -26,7 +27,7 @@ namespace SmartSchool.WebAPI.Controllers
                 Telefone = "08007777"
             },
             new Aluno(){
-                Id = 1,
+                Id = 3,
                 Nome = "Fernando",
                 Sobrenome = "Pessoa",
                 Telefone = "9999999"
@@ -37,6 +38,16 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult Get()
         {
             return Ok(Alunos);
+            
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetbyId(int id)
+        {
+            var aluno = Alunos.FirstOrDefault(x => x.Id == id);
+            if (aluno != null)
+                return Ok(aluno);
+            return NotFound("Aluno Not Found");
             
         }
         
