@@ -62,6 +62,35 @@ namespace SmartSchool.WebAPI.Controllers
             return NotFound("Aluno Not Found");
             
         }
+
+        [HttpPost] 
+        public IActionResult Post(Aluno model)
+        {
+            Alunos.Add(model);
+            return Ok(model);
+        }
         
+        [HttpPut] 
+        public IActionResult Put(int id, Aluno model)
+        {
+            Alunos.Add(model);
+            return Ok(model);
+        }
+
+        [HttpPatch] 
+        public IActionResult Patch(int id, Aluno model)
+        {
+            Alunos.Add(model);
+            return Ok(model);
+        }
+
+        [HttpDelete] 
+        public IActionResult Delete(int id, Aluno model)
+        {
+            Alunos.Remove(model);
+            return Ok(model);
+        }
+
+
     }
 }
