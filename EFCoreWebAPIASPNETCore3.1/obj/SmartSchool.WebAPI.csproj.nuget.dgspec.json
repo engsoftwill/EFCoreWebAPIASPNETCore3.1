@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/engwill/LearnProg/Udemy/WebAPI-AspNetCore-EFCore3.1/SmartSchool.WebAPI/SmartSchool.WebAPI.csproj": {}
+    "/home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/SmartSchool.WebAPI.csproj": {}
   },
   "projects": {
-    "/home/engwill/LearnProg/Udemy/WebAPI-AspNetCore-EFCore3.1/SmartSchool.WebAPI/SmartSchool.WebAPI.csproj": {
+    "/home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/SmartSchool.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/engwill/LearnProg/Udemy/WebAPI-AspNetCore-EFCore3.1/SmartSchool.WebAPI/SmartSchool.WebAPI.csproj",
+        "projectUniqueName": "/home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/SmartSchool.WebAPI.csproj",
         "projectName": "SmartSchool.WebAPI",
-        "projectPath": "/home/engwill/LearnProg/Udemy/WebAPI-AspNetCore-EFCore3.1/SmartSchool.WebAPI/SmartSchool.WebAPI.csproj",
-        "packagesPath": "/home/engwill/.nuget/packages/",
-        "outputPath": "/home/engwill/LearnProg/Udemy/WebAPI-AspNetCore-EFCore3.1/SmartSchool.WebAPI/obj/",
+        "projectPath": "/home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/SmartSchool.WebAPI.csproj",
+        "packagesPath": "/home/will/.nuget/packages/",
+        "outputPath": "/home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "/home/engwill/.nuget/NuGet/NuGet.Config"
+          "/home/will/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -56,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
         }
       }
     }

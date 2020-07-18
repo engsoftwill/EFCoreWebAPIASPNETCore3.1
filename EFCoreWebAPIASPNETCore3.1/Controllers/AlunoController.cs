@@ -66,29 +66,26 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPost] 
         public IActionResult Post(Aluno model)
         {
-            Alunos.Add(model);
             return Ok(model);
         }
         
-        [HttpPut] 
+        [HttpPut("{id:int}")] 
         public IActionResult Put(int id, Aluno model)
         {
-            Alunos.Add(model);
             return Ok(model);
         }
 
-        [HttpPatch] 
+        [HttpPatch("{id:int}")] //atualizar parcialmente o registro
         public IActionResult Patch(int id, Aluno model)
         {
             Alunos.Add(model);
             return Ok(model);
         }
 
-        [HttpDelete] 
-        public IActionResult Delete(int id, Aluno model)
+        [HttpDelete("{id:int}")] 
+        public IActionResult Delete(int id)
         {
-            Alunos.Remove(model);
-            return Ok(model);
+            return Ok();
         }
 
 
