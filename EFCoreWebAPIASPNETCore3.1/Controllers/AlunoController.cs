@@ -1,91 +1,97 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AlunoController:ControllerBase
+    public class AlunoController : ControllerBase
     {
-        public AlunoController()
-        {            
-        }
-        public List<Aluno> Alunos =    new List<Aluno>()
+        private readonly SmartContext _context;
+        public AlunoController(SmartContext context)
         {
-            new Aluno(){
-                Id = 1,
-                Nome = "Marcos",
-                Sobrenome = "Ferreira",
-                Telefone = "08000800"
-            },
-            new Aluno(){
-                Id = 2,
-                Nome = "Julia",
-                Sobrenome = "Rocha",
-                Telefone = "08007777"
-            },
-            new Aluno(){
-                Id = 3,
-                Nome = "Fernando",
-                Sobrenome = "Pessoa",
-                Telefone = "9999999"
-            }
-        };
+            _context = context;
+        }
+
         // api/aluno
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(Alunos);
-            
+            return Ok(_context.Alunos);
+
         }
 
         // api/aluno/id
         [HttpGet("{id:int}")]
         public IActionResult GetbyId(int id)
         {
-            var aluno = Alunos.FirstOrDefault(x => x.Id == id);
+            var aluno = _context.Alunos.FirstOrDefault(x => x.Id == id);
             if (aluno != null)
                 return Ok(aluno);
             return NotFound("Aluno Not Found");
-            
+
         }
         // http://localhost:5000/api/aluno/byName?nome=Fernando&sobrenome=Pessoa
-        [HttpGet("ByName")] 
+        [HttpGet("ByName")]
         public IActionResult GetbyName(string nome, string Sobrenome)
         {
-            var aluno = Alunos.FirstOrDefault(x => 
+            var aluno = _context.Alunos.FirstOrDefault(x =>
             x.Nome.Contains(nome) && x.Sobrenome.Contains(Sobrenome));
             if (aluno != null)
                 return Ok(aluno);
             return NotFound("Aluno Not Found");
-            
+
         }
 
-        [HttpPost] 
+        [HttpPost]
         public IActionResult Post(Aluno model)
         {
+            _context.Add(model);
+            _context.SaveChanges();
             return Ok(model);
         }
-        
-        [HttpPut("{id:int}")] 
+
+        [HttpPut("{id:int}")]
         public IActionResult Put(int id, Aluno model)
         {
-            return Ok(model);
+            var aluno = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
+            if (aluno != null)
+            {
+                _context.Update(model);
+                _context.SaveChanges();
+                return Ok(_context.Alunos);
+            }
+            return BadRequest("id not found");
         }
 
         [HttpPatch("{id:int}")] //atualizar parcialmente o registro
         public IActionResult Patch(int id, Aluno model)
         {
-            Alunos.Add(model);
-            return Ok(model);
+            var aluno = _context.Alunos.FirstOrDefault(a => a.Id == id);
+            if (aluno != null)
+            {
+                _context.Update(model);
+                _context.SaveChanges();
+                return Ok(_context.Alunos);
+            }
+            return BadRequest("id not found");
         }
 
-        [HttpDelete("{id:int}")] 
+        [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {
-            return Ok();
+            var aluno = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
+            if (aluno != null)
+            {
+                _context.Remove(aluno);
+                _context.SaveChanges();
+                return Ok(_context.Alunos);
+            }
+            return BadRequest("id not found");
         }
 
 
