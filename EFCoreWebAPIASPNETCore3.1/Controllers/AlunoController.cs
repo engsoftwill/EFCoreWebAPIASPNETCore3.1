@@ -12,8 +12,10 @@ namespace SmartSchool.WebAPI.Controllers
     public class AlunoController : ControllerBase
     {
         private readonly SmartContext _context;
-        public AlunoController(SmartContext context)
+        private readonly IRepository _repo;
+        public AlunoController(SmartContext context, IRepository repo)
         {
+            _repo = repo;
             _context = context;
         }
 
@@ -50,9 +52,10 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPost]
         public IActionResult Post(Aluno model)
         {
-            _context.Add(model);
-            _context.SaveChanges();
-            return Ok(model);
+            _repo.Add(model);
+            if(_repo.SaveChanges())
+                return Ok(model);
+            return BadRequest("aluno not added");
         }
 
         [HttpPut("{id:int}")]
@@ -61,11 +64,12 @@ namespace SmartSchool.WebAPI.Controllers
             var aluno = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
             if (aluno != null)
             {
-                _context.Update(model);
-                _context.SaveChanges();
-                return Ok(_context.Alunos);
+                _repo.Update(model);
+                if(_repo.SaveChanges())
+                    return Ok(_context.Alunos);
+                return BadRequest("aluno not implemented");
             }
-            return BadRequest("id not found");
+            return NotFound("id not found");
         }
 
         [HttpPatch("{id:int}")] //atualizar parcialmente o registro
@@ -74,9 +78,10 @@ namespace SmartSchool.WebAPI.Controllers
             var aluno = _context.Alunos.FirstOrDefault(a => a.Id == id);
             if (aluno != null)
             {
-                _context.Update(model);
-                _context.SaveChanges();
-                return Ok(_context.Alunos);
+                _repo.Update(model);
+                if(_repo.SaveChanges())
+                    return Ok(_context.Alunos);
+                return BadRequest("aluno not implemented");
             }
             return BadRequest("id not found");
         }
@@ -87,13 +92,12 @@ namespace SmartSchool.WebAPI.Controllers
             var aluno = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
             if (aluno != null)
             {
-                _context.Remove(aluno);
-                _context.SaveChanges();
-                return Ok(_context.Alunos);
+                _repo.Delete(aluno);
+                if(_repo.SaveChanges())
+                    return Ok(_context.Alunos);
+                return BadRequest("aluno not deleted");
             }
             return BadRequest("id not found");
         }
-
-
     }
 }

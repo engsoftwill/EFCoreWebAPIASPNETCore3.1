@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SmartSchool.WebAPI.Data;
 
 namespace SmartSchool.WebAPI
 {
@@ -29,6 +30,14 @@ namespace SmartSchool.WebAPI
             services.AddDbContext<Data.SmartContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
+
+        //    services.AddSingleton<IRepository, Repository>();
+            
+        //    services.AddTransient<IRepository, Repository>();
+
+            services.AddScoped<IRepository, Repository>();
+
+
             services.AddControllers();
         }
 
