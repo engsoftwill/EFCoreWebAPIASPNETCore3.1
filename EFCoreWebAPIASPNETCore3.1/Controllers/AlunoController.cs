@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
+using SmartSchool.WebAPI.Dtos;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
@@ -12,8 +14,11 @@ namespace SmartSchool.WebAPI.Controllers
     public class AlunoController : ControllerBase
     {
         private readonly IRepository _repo;
-        public AlunoController(IRepository repo)
+        private readonly IMapper _mapper;
+
+        public AlunoController(IRepository repo, IMapper mapper)
         {
+            _mapper = mapper;
             _repo = repo;
         }
 
@@ -21,7 +26,9 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_repo.GetAllAlunos(true));
+            var alunos = _repo.GetAllAlunos(true);
+            var alunosDto = _mapper.Map<IEnumerable<AlunoDto>>(alunos);
+            return Ok(alunosDto);
 
         }
 
@@ -30,9 +37,10 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult GetbyId(int id)
         {
             var aluno = _repo.GetAlunobyId(id);
-            if (aluno != null)
-                return Ok(aluno);
-            return NotFound("Aluno Not Found");
+            if (aluno == null)
+                return NotFound("aluno not Found");
+            var alunoDto = _mapper.Map<AlunoDto>(aluno);
+            return Ok(alunoDto);
 
         }
         // http://localhost:5000/api/aluno/byName?nome=Fernando&sobrenome=Pessoa
@@ -49,54 +57,53 @@ namespace SmartSchool.WebAPI.Controllers
         */
 
         [HttpPost]
-        public IActionResult Post(Aluno model)
+        public IActionResult Post(AlunoRegistrarDto model)
         {
-            _repo.Add(model);
-            if(_repo.SaveChanges())
-                return Ok(model);
-            return BadRequest("aluno not added");
+            var aluno = _mapper.Map<Aluno>(model);
+            _repo.Add(aluno);
+            if (!_repo.SaveChanges())
+                return BadRequest("aluno not Created");
+            return Created($"api/aluno/{model.Id}", _mapper.Map<AlunoDto>(aluno));
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult Put(int id, Aluno model)
+        public IActionResult Put(int id, AlunoRegistrarDto model)
         {
             var aluno = _repo.GetAlunobyId(id);
-            if (aluno != null)
-            {
-                _repo.Update(model);
-                if(_repo.SaveChanges())
-                    return Ok(_repo.GetAllAlunos(true));
-                return BadRequest("aluno not implemented");
-            }
-            return NotFound("id not found");
+            if (aluno == null) return NotFound("id not found");
+            _mapper.Map(model, aluno);
+                _repo.Update(aluno);
+            if (!_repo.SaveChanges())
+                return BadRequest("aluno not updated");
+            var alunos = _repo.GetAllAlunos(true);
+            var alunosDto = _mapper.Map<IEnumerable<AlunoDto>>(alunos);
+            return Created($"api/aluno/{model.Id}", _mapper.Map<AlunoDto>(aluno));
         }
 
         [HttpPatch("{id:int}")] //atualizar parcialmente o registro
-        public IActionResult Patch(int id, Aluno model)
+        public IActionResult Patch(int id, AlunoRegistrarDto model)
         {
             var aluno = _repo.GetAlunobyId(id);
-            if (aluno != null)
-            {
-                _repo.Update(model);
-                if(_repo.SaveChanges())
-                    return Ok(_repo.GetAllAlunos(true));
-                return BadRequest("aluno not implemented");
-            }
-            return BadRequest("id not found");
+            if (aluno == null) return NotFound("id not found");
+            _mapper.Map(model, aluno);
+                _repo.Update(aluno);
+            if (!_repo.SaveChanges())
+                return BadRequest("aluno not patched");
+            var alunos = _repo.GetAllAlunos(true);
+            var alunosDto = _mapper.Map<IEnumerable<AlunoDto>>(alunos);
+            return Created($"api/aluno/{model.Id}", _mapper.Map<AlunoDto>(aluno));
         }
 
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {
             var aluno = _repo.GetAlunobyId(id);
-            if (aluno != null)
-            {
+            if (aluno == null) return NotFound("id not found");
                 _repo.Delete(aluno);
-                if(_repo.SaveChanges())
-                    return Ok(_repo.GetAllAlunos(true));
-                return BadRequest("aluno not deleted");
-            }
-            return BadRequest("id not found");
+            if (!_repo.SaveChanges())
+                return BadRequest("aluno not Deleted");
+            return Ok("aluno deleted");
+
         }
     }
 }
