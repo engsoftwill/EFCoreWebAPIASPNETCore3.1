@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "70030OUtobW9jerlXFjRzZqDzGwoBr+c8oxMbriFSOn8afid7/vgkm2FghXbXDjfyvrpUAtMPCVHqbsedsAyug==",
+  "dgSpecHash": "Js77aW3xCARrIVkdSs+KNtogr3i1d2Isg9X8dbNR7mMpuKkIcCJ46esmE12ET3lmWzUo5emUGWbSNdLiT0jS/g==",
   "success": true,
   "projectFilePath": "/home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/SmartSchool.WebAPI.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "/home/will/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/3.2.0/automapper.extensions.microsoft.dependencyinjection.3.2.0.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.aspnetcore.jsonpatch/3.1.2/microsoft.aspnetcore.jsonpatch.3.1.2.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/3.1.2/microsoft.aspnetcore.mvc.newtonsoftjson.3.1.2.nupkg.sha512",
+    "/home/will/.nuget/packages/microsoft.aspnetcore.mvc.versioning/4.1.1/microsoft.aspnetcore.mvc.versioning.4.1.1.nupkg.sha512",
+    "/home/will/.nuget/packages/microsoft.aspnetcore.mvc.versioning.apiexplorer/4.1.1/microsoft.aspnetcore.mvc.versioning.apiexplorer.4.1.1.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.0/microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.bcl.hashcode/1.1.0/microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
@@ -21,6 +23,7 @@
     "/home/will/.nuget/packages/microsoft.entityframeworkcore.sqlite/3.1.2/microsoft.entityframeworkcore.sqlite.3.1.2.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.entityframeworkcore.sqlite.core/3.1.2/microsoft.entityframeworkcore.sqlite.core.3.1.2.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.entityframeworkcore.tools/3.1.2/microsoft.entityframeworkcore.tools.3.1.2.nupkg.sha512",
+    "/home/will/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.extensions.caching.abstractions/3.1.2/microsoft.extensions.caching.abstractions.3.1.2.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.extensions.caching.memory/3.1.2/microsoft.extensions.caching.memory.3.1.2.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.extensions.configuration/3.1.2/microsoft.extensions.configuration.3.1.2.nupkg.sha512",
@@ -35,12 +38,17 @@
     "/home/will/.nuget/packages/microsoft.extensions.primitives/3.1.2/microsoft.extensions.primitives.3.1.2.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "/home/will/.nuget/packages/microsoft.openapi/1.1.4/microsoft.openapi.1.1.4.nupkg.sha512",
     "/home/will/.nuget/packages/newtonsoft.json/12.0.2/newtonsoft.json.12.0.2.nupkg.sha512",
     "/home/will/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/home/will/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.0.2/sqlitepclraw.bundle_e_sqlite3.2.0.2.nupkg.sha512",
     "/home/will/.nuget/packages/sqlitepclraw.core/2.0.2/sqlitepclraw.core.2.0.2.nupkg.sha512",
     "/home/will/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.0.2/sqlitepclraw.lib.e_sqlite3.2.0.2.nupkg.sha512",
     "/home/will/.nuget/packages/sqlitepclraw.provider.dynamic_cdecl/2.0.2/sqlitepclraw.provider.dynamic_cdecl.2.0.2.nupkg.sha512",
+    "/home/will/.nuget/packages/swashbuckle.aspnetcore/5.4.1/swashbuckle.aspnetcore.5.4.1.nupkg.sha512",
+    "/home/will/.nuget/packages/swashbuckle.aspnetcore.swagger/5.4.1/swashbuckle.aspnetcore.swagger.5.4.1.nupkg.sha512",
+    "/home/will/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.4.1/swashbuckle.aspnetcore.swaggergen.5.4.1.nupkg.sha512",
+    "/home/will/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.4.1/swashbuckle.aspnetcore.swaggerui.5.4.1.nupkg.sha512",
     "/home/will/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",
     "/home/will/.nuget/packages/system.collections.concurrent/4.3.0/system.collections.concurrent.4.3.0.nupkg.sha512",
     "/home/will/.nuget/packages/system.collections.immutable/1.7.0/system.collections.immutable.1.7.0.nupkg.sha512",
@@ -80,16 +88,5 @@
     "/home/will/.nuget/packages/system.threading/4.3.0/system.threading.4.3.0.nupkg.sha512",
     "/home/will/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "SmartSchool.WebAPI depends on AutoMapper.Extensions.Microsoft.DependencyInjection (>= 3.1.2) but AutoMapper.Extensions.Microsoft.DependencyInjection 3.1.2 was not found. An approximate best match of AutoMapper.Extensions.Microsoft.DependencyInjection 3.2.0 was resolved.",
-      "libraryId": "AutoMapper.Extensions.Microsoft.DependencyInjection",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  "logs": []
 }
