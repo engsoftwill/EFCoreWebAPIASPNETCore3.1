@@ -104,3 +104,5 @@
 /home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll
 /home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/bin/Debug/netcoreapp3.1/Newtonsoft.Json.Bson.dll
+/home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/bin/Debug/netcoreapp3.1/AutoMapper.dll
+/home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/bin/Debug/netcoreapp3.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

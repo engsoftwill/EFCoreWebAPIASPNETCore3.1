@@ -88,7 +88,7 @@ namespace SmartSchool.WebAPI.Data
                             .ThenInclude(d=>d.AlunosDisciplinas)
                             .ThenInclude(ad=>ad.Aluno); //
 
-            query = query.AsNoTracking().OrderBy(p=>p.ProfessorId); //poderia ordenar por nome
+            query = query.AsNoTracking().OrderBy(p=>p.Id); //poderia ordenar por nome
             return query.ToArray();
         }
         public Professor GetProfessorbyId(int professorId, bool includealuno = false)
@@ -100,8 +100,8 @@ namespace SmartSchool.WebAPI.Data
                             .ThenInclude(ad=>ad.Aluno); 
 
             query = query.AsNoTracking()
-            .OrderBy(p=>p.ProfessorId)
-            .Where(p => p.ProfessorId==professorId);
+            .OrderBy(p=>p.Id)
+            .Where(p => p.Id==professorId);
             
             return query.FirstOrDefault();
         }
@@ -115,7 +115,7 @@ namespace SmartSchool.WebAPI.Data
                             .ThenInclude(ad=>ad.Aluno); 
 
             query = query.AsNoTracking()
-            .OrderBy(p=>p.ProfessorId)
+            .OrderBy(p=>p.Id)
             .Where(p => p.Disciplinas
             .Any(ad => ad.AlunosDisciplinas
             .Any(d=>d.DisciplinaId==disciplinaId)));   
