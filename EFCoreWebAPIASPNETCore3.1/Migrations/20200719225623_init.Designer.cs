@@ -8,7 +8,7 @@ using SmartSchool.WebAPI.Data;
 namespace SmartSchool.WebAPI.Migrations
 {
     [DbContext(typeof(SmartContext))]
-    [Migration("20200719154926_init")]
+    [Migration("20200719225623_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -321,7 +321,7 @@ namespace SmartSchool.WebAPI.Migrations
                         .IsRequired();
 
                     b.HasOne("SmartSchool.WebAPI.Models.Disciplina", "Disciplina")
-                        .WithMany("MyProperty")
+                        .WithMany("AlunosDisciplinas")
                         .HasForeignKey("DisciplinaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

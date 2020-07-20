@@ -4,6 +4,8 @@ namespace SmartSchool.WebAPI.Models
 {
     public class Disciplina
     {
+
+
         public Disciplina()
         {
         }
@@ -18,6 +20,7 @@ namespace SmartSchool.WebAPI.Models
         public string Nome { get; set; }
         public int ProfessorId { get; set; }
         public Professor Professor { get; set; }
-        public IEnumerable<AlunoDisciplina> MyProperty { get; set; }
+        public IEnumerable<AlunoDisciplina> AlunosDisciplinas { get; set; }
+
     }
 }

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "45KeakyXaaISEQbdILiQOuq8U0A47NI2uzG1DPQA9EY44/HNHenKsCz9jf2h7ZJFUWdXwDp7JuhAsMxvVfTFuw==",
+  "dgSpecHash": "j17ZsTY/KjXb6QlyFFNSZFrsVjDmZhSr8jEAozF777HMAvXyb9raB5ldf8fKVSQ92uQDa6Ui+NTvbphx6Sib/A==",
   "success": true,
   "projectFilePath": "/home/will/Prog/SmartSchool/EFCoreWebAPIASPNETCore3.1/SmartSchool.WebAPI.csproj",
   "expectedPackageFiles": [
+    "/home/will/.nuget/packages/microsoft.aspnetcore.jsonpatch/3.1.2/microsoft.aspnetcore.jsonpatch.3.1.2.nupkg.sha512",
+    "/home/will/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/3.1.2/microsoft.aspnetcore.mvc.newtonsoftjson.3.1.2.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.0/microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.bcl.hashcode/1.1.0/microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
@@ -29,6 +31,8 @@
     "/home/will/.nuget/packages/microsoft.extensions.logging.abstractions/3.1.2/microsoft.extensions.logging.abstractions.3.1.2.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.extensions.options/3.1.2/microsoft.extensions.options.3.1.2.nupkg.sha512",
     "/home/will/.nuget/packages/microsoft.extensions.primitives/3.1.2/microsoft.extensions.primitives.3.1.2.nupkg.sha512",
+    "/home/will/.nuget/packages/newtonsoft.json/12.0.2/newtonsoft.json.12.0.2.nupkg.sha512",
+    "/home/will/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/home/will/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.0.2/sqlitepclraw.bundle_e_sqlite3.2.0.2.nupkg.sha512",
     "/home/will/.nuget/packages/sqlitepclraw.core/2.0.2/sqlitepclraw.core.2.0.2.nupkg.sha512",
     "/home/will/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.0.2/sqlitepclraw.lib.e_sqlite3.2.0.2.nupkg.sha512",

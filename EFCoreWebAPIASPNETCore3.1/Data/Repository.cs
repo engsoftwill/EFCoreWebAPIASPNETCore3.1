@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Models;
 
@@ -22,6 +23,7 @@ namespace SmartSchool.WebAPI.Data
             _context.Remove(entity);
         }
 
+        
         public bool SaveChanges()
         {
             return  (_context.SaveChanges()>0);
@@ -29,7 +31,95 @@ namespace SmartSchool.WebAPI.Data
 
         public void Update<T>(T entity) where T : class
         {
-            throw new System.NotImplementedException();
+            _context.Update(entity);
+        }
+
+        public Aluno[] GetAllAlunos(bool includeprofessor = false)
+        {
+            IQueryable<Aluno> query = _context.Alunos;
+            
+            if(includeprofessor)
+                query = query.Include(a=> a.AlunosDisciplinas)
+                            .ThenInclude(d=>d.Disciplina)
+                            .ThenInclude(p=>p.Professor);
+
+            query = query.AsNoTracking().OrderBy(a=>a.Id);
+                
+            return query.ToArray();
+        }
+
+        
+
+        public Aluno GetAlunobyId(int alunoId, bool includeprofessor = false)
+        {
+            IQueryable<Aluno> query = _context.Alunos;
+            
+            if(includeprofessor)
+                query = query.Include(a=> a.AlunosDisciplinas)
+                            .ThenInclude(d=>d.Disciplina)
+                            .ThenInclude(p=>p.Professor);
+
+            query = query.AsNoTracking().OrderBy(a=>a.Id).Where(x=>x.Id==alunoId);
+                
+            return query.FirstOrDefault();
+        }
+
+        public Aluno[] GetAlunosbyDisciplina(int disciplinaId, bool includeprofessor = false)
+        {
+            IQueryable<Aluno> query = _context.Alunos;
+            
+            if(includeprofessor)
+                query = query.Include(a=> a.AlunosDisciplinas)
+                            .ThenInclude(d=>d.Disciplina)
+                            .ThenInclude(p=>p.Professor);
+
+            query = query.AsNoTracking().OrderBy(a=>a.Id)//a esta na tabela alunos
+            .Where(x=>x.AlunosDisciplinas //seleciona a tabela intermediaria alunosdisciplinas
+            .Any(ad=>ad.DisciplinaId==disciplinaId));//procura dentro de
+                
+            return query.ToArray();
+        }
+
+        public Professor[] GetAllProfessores(bool includealuno = false)
+        {
+            IQueryable<Professor> query = _context.Professores;
+            if(includealuno)
+                query = query.Include(a=> a.Disciplinas)
+                            .ThenInclude(d=>d.AlunosDisciplinas)
+                            .ThenInclude(ad=>ad.Aluno); //
+
+            query = query.AsNoTracking().OrderBy(p=>p.ProfessorId); //poderia ordenar por nome
+            return query.ToArray();
+        }
+        public Professor GetProfessorbyId(int professorId, bool includealuno = false)
+        {
+            IQueryable<Professor> query = _context.Professores;
+            if(includealuno)
+                query = query.Include(a=> a.Disciplinas)
+                            .ThenInclude(d=>d.AlunosDisciplinas)
+                            .ThenInclude(ad=>ad.Aluno); 
+
+            query = query.AsNoTracking()
+            .OrderBy(p=>p.ProfessorId)
+            .Where(p => p.ProfessorId==professorId);
+            
+            return query.FirstOrDefault();
+        }
+
+        public Professor[] GetProfessoresbyDisciplina(int disciplinaId, bool includealuno = false)
+        {
+            IQueryable<Professor> query = _context.Professores;
+            if(includealuno)
+                query = query.Include(a=> a.Disciplinas)
+                            .ThenInclude(d=>d.AlunosDisciplinas)
+                            .ThenInclude(ad=>ad.Aluno); 
+
+            query = query.AsNoTracking()
+            .OrderBy(p=>p.ProfessorId)
+            .Where(p => p.Disciplinas
+            .Any(ad => ad.AlunosDisciplinas
+            .Any(d=>d.DisciplinaId==disciplinaId)));   
+            return query.ToArray();
         }
     }
 }

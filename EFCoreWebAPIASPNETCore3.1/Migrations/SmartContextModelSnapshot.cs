@@ -319,7 +319,7 @@ namespace SmartSchool.WebAPI.Migrations
                         .IsRequired();
 
                     b.HasOne("SmartSchool.WebAPI.Models.Disciplina", "Disciplina")
-                        .WithMany("MyProperty")
+                        .WithMany("AlunosDisciplinas")
                         .HasForeignKey("DisciplinaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
