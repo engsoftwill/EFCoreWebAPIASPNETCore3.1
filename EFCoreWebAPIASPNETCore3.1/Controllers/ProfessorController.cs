@@ -11,17 +11,18 @@ namespace SmartSchool.WebAPI.Controllers
     [Route("api/[controller]")]
     public class ProfessorController : ControllerBase
     {
-        private readonly SmartContext _context;
-        public ProfessorController(SmartContext context)
+        
+        private readonly IRepository _repo;
+        public ProfessorController(IRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         // api/aluno
         [HttpGet]
         public IActionResult Getprofessor()
         {
-            return Ok(_context.Professores);
+            return Ok(_repo.GetAllProfessores());
 
         }
 
@@ -29,41 +30,42 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetbyId(int id)
         {
-            var professor = _context.Professores.FirstOrDefault(x => x.ProfessorId == id);
+            var professor = _repo.GetProfessorbyId(id);
             if (professor != null)
                 return Ok(professor);
             return NotFound("Aluno Not Found");
 
         }
         // http://localhost:5000/api/professor/byName?nome=Fernando&sobrenome=Pessoa
-        [HttpGet("ByName")]
+        /*[HttpGet("ByName")]
         public IActionResult GetbyName(string nome)
         {
-            var professor = _context.Professores.FirstOrDefault(x =>
-            x.Nome.Contains(nome));
+            var professor = _repo.GetProfessorbyId(id)
             if (professor != null)
                 return Ok(professor);
             return NotFound("professor Not Found");
 
         }
+        */
 
         [HttpPost]
         public IActionResult Post(Professor model)
         {
-            _context.Add(model);
-            _context.SaveChanges();
-            return Ok(model);
+            _repo.Add(model);
+            if(_repo.SaveChanges())
+                return Ok(model);
+            return BadRequest("Professor not added");
         }
 
         [HttpPut("{id:int}")]
         public IActionResult Put(int id, Aluno model)
         {
-            var aluno = _context.Professores.AsNoTracking().FirstOrDefault(a => a.ProfessorId == id);
+            var aluno = _repo.GetProfessorbyId(id);
             if (aluno != null)
             {
-                _context.Update(model);
-                _context.SaveChanges();
-                return Ok(_context.Professores);
+                _repo.Update(model);
+                if(_repo.SaveChanges())
+                    return Ok(_repo.GetAllProfessores());
             }
             return BadRequest("id not found");
         }
@@ -71,12 +73,12 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPatch("{id:int}")] //atualizar parcialmente o registro
         public IActionResult Patch(int id, Professor model)
         {
-            var professor = _context.Professores.FirstOrDefault(a => a.ProfessorId == id);
-            if (professor != null)
+            var aluno = _repo.GetProfessorbyId(id);
+            if (aluno != null)
             {
-                _context.Update(model);
-                _context.SaveChanges();
-                return Ok(_context.Professores);
+                _repo.Update(model);
+                if(_repo.SaveChanges())
+                    return Ok(_repo.GetAllProfessores());
             }
             return BadRequest("id not found");
         }
@@ -84,12 +86,12 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {
-            var professor = _context.Professores.AsNoTracking().FirstOrDefault(a => a.ProfessorId == id);
-            if (professor != null)
+            var aluno = _repo.GetProfessorbyId(id);
+            if (aluno != null)
             {
-                _context.Remove(professor);
-                _context.SaveChanges();
-                return Ok(_context.Professores);
+                _repo.Delete(aluno);
+                if(_repo.SaveChanges())
+                    return Ok(_repo.GetAllProfessores());
             }
             return BadRequest("id not found");
         }
